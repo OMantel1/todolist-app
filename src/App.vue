@@ -3,8 +3,10 @@
     <div class="background-image"></div>
     <div class="header">
       <h1 class="header__title">To Do List</h1>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+      <nav>
+        <router-link to="/">Home</router-link> |
+        <router-link to="/about">About</router-link>
+      </nav>
     </div>
     <router-view />
   </div>
@@ -12,14 +14,23 @@
 
 
 <style lang="scss">
+body {
+  margin: 0;
+  padding: 0;
+}
 .header {
   position: relative;
+  top: 0;
   color: white;
   height: 150px;
-  padding: 16px;
-
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
   &__title {
     letter-spacing: 8px;
+    // margin-top: 0;
+    // padding-top: 12px;
   }
   a {
     color: black;
@@ -33,7 +44,7 @@
 }
 
 .background-image {
-  width: 100vw;
+  width: 100%;
   height: 150px;
   position: absolute;
   background-color: rgb(138, 138, 138);
@@ -42,6 +53,7 @@
   background-position: 50% 60%;
   filter: blur(1px);
   -webkit-filter: blur(8px);
+  box-sizing: border-box;
 }
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -49,6 +61,8 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 #nav {

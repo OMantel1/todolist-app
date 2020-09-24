@@ -53,9 +53,10 @@ export default {
 
 <style lang="scss" scoped>
 .container {
-  width: 500px;
+  width: 90vw;
+  max-width: 500px;
   margin: auto;
-  padding: 20px;
+  padding: 20px 0;
 }
 
 .todo-input {
