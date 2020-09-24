@@ -45,6 +45,7 @@ export default {
       if (this.newTodo.length > 0) {
         this.itemList.push({ content: this.newTodo });
       }
+      this.newTodo="";
     },
   },
 };
