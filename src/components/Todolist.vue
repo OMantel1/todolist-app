@@ -1,6 +1,12 @@
 <template>
   <div class="container">
-    <input type="text" class="todo-input" placeholder="Un élément à ajouter?" />
+    <input
+      type="text"
+      class="todo-input"
+      placeholder="Un élément à ajouter?"
+      v-model="newTodo"
+    />
+    <button v-on:click="addNewTodo">Ajouter</button>
     <div class="list-group">
       <ul>
         <List
@@ -21,6 +27,9 @@ export default {
   components: {
     List,
   },
+  props: {
+    newTodo: String,
+  },
   data() {
     return {
       itemList: [
@@ -30,6 +39,13 @@ export default {
         { content: "Got to the swimming pool" },
       ],
     };
+  },
+  methods: {
+    addNewTodo() {
+      if (this.newTodo.length > 0) {
+        this.itemList.push({ content: this.newTodo });
+      }
+    },
   },
 };
 </script>
