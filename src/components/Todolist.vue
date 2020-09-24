@@ -9,7 +9,7 @@
     <button class="addButton" v-on:click="addNewTodo">Ajouter</button>
     <div class="list-group">
       <ul>
-        <List
+        <TodolistItems
           v-for="(item, index) in itemList"
           :key="index"
           :content="item.content"
@@ -20,12 +20,12 @@
 </template>
 
 <script>
-import List from "@/components/List.vue";
+import TodolistItems from "@/components/TodolistItems.vue";
 
 export default {
   name: "Todolist",
   components: {
-    List,
+    TodolistItems,
   },
   props: {
     newTodo: String,
