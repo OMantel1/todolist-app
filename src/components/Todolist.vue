@@ -6,7 +6,7 @@
       placeholder="Un élément à ajouter?"
       v-model="newTodo"
     />
-    <button v-on:click="addNewTodo">Ajouter</button>
+    <button class="addButton" v-on:click="addNewTodo">Ajouter</button>
     <div class="list-group">
       <ul>
         <List
@@ -57,6 +57,10 @@ export default {
   max-width: 500px;
   margin: auto;
   padding: 20px 0;
+}
+
+.addButton {
+  margin-top: 16px;
 }
 
 .todo-input {
