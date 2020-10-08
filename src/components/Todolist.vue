@@ -6,18 +6,33 @@
       placeholder="Un élément à ajouter?"
       v-model="newTodo"
     />
-    <button class="addButton" v-on:click="addNewTodo">Ajouter</button>
+    <button class="addButton btn" v-on:click="addNewTodo">Ajouter</button>
+
+    <!-- <p> {{dataToDelete}} </p> -->
+
     <div class="list-group">
-      <ul>
+      <p v-if="itemList.length <= 0" class="msg">Votre liste est vide</p>
+      <ul v-else>
         <TodolistItems
           v-for="(item, index) in itemList"
           :key="index"
-          :content="item.content"
+          :content="item"
+          v-on:delete-item="deleteTodoClicked"
         />
       </ul>
     </div>
+
+    <button
+      class="clearAllButton btn"
+      v-if="itemList.length > 0"
+      v-on:click="deleteAllTheList"
+    >
+      Clear All
+    </button>
   </div>
 </template>
+
+
 
 <script>
 import TodolistItems from "@/components/TodolistItems.vue";
@@ -27,29 +42,44 @@ export default {
   components: {
     TodolistItems,
   },
-  props: {
-    newTodo: String,
-  },
+
   data() {
     return {
-      itemList: [
-        { content: "Wash the car" },
-        { content: "Clean the house" },
-        { content: "Read Javascript good practices" },
-        { content: "Got to the swimming pool" },
-      ],
+      itemList: [],
+      newTodo: "",
     };
   },
+  mounted() {
+    this.check();
+  },
   methods: {
+    deleteTodoClicked(elt) {
+      const indexOfElt = this.itemList.indexOf(elt);
+      this.itemList.splice(indexOfElt, 1);
+      localStorage.setItem("todoStorage", JSON.stringify(this.itemList));
+    },
+    check() {
+      let storage = JSON.parse(localStorage.getItem("todoStorage"));
+      if (storage) {
+        this.itemList = JSON.parse(localStorage.getItem("todoStorage"));
+      }
+    },
     addNewTodo() {
       if (this.newTodo.length > 0) {
-        this.itemList.push({ content: this.newTodo });
+        this.itemList.push(this.newTodo);
       }
-      this.newTodo="";
+      this.newTodo = "";
+      localStorage.setItem("todoStorage", JSON.stringify(this.itemList));
+    },
+    deleteAllTheList() {
+      localStorage.removeItem("todoStorage");
+      this.itemList = [];
     },
   },
 };
 </script>
+
+
 
 <style lang="scss" scoped>
 .container {
@@ -63,10 +93,26 @@ export default {
   margin-top: 16px;
 }
 
+.msg {
+  font-size: 20px;
+}
+
+.btn {
+  font-family: inherit;
+  padding: 4px 24px;
+  border-radius: 50px;
+  border: solid #e74c3c 1px;
+  color: white;
+  background-color: #e74c3c;
+  font-weight: bold;
+  font-size: 14px;
+}
+
 .todo-input {
   padding: 2px 8px;
   width: 100%;
   box-sizing: border-box;
+  font-size: 14px;
 }
 
 .list-group {

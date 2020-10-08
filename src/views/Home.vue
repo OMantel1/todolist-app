@@ -8,12 +8,12 @@
 
 <script>
 // @ is an alias to /src
-import Todolist from '@/components/Todolist.vue'
+import Todolist from "@/components/Todolist.vue";
 
 export default {
-  name: 'Home',
+  name: "Home",
   components: {
-    Todolist
-  }
-}
+    Todolist,
+  },
+};
 </script>

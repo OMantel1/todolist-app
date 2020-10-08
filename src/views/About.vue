@@ -1,5 +1,13 @@
 <template>
   <div class="about">
-    <h1>This is an about page</h1>
+    <p>Todo List app</p>
+    <p>Made with Vue.js</p>
   </div>
 </template>
+<style lang="css" scoped>
+p {
+  color: grey;
+  font-weight: lighter;
+  font-size: 18px;
+}
+</style>
