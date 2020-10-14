@@ -5,6 +5,7 @@
       class="todo-input"
       placeholder="Un élément à ajouter?"
       v-model="newTodo"
+      v-on:keyup.enter="addNewTodo"
     />
     <button class="addButton btn" v-on:click="addNewTodo">Ajouter</button>
 
