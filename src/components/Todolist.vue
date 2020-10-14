@@ -106,6 +106,10 @@ export default {
   background-color: #e74c3c;
   font-weight: bold;
   font-size: 14px;
+  &:hover {
+    box-shadow: 0px 0px 4px grey;
+    cursor: pointer;
+  }
 }
 
 .todo-input {
