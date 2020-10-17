@@ -1,15 +1,15 @@
 <template>
   <div class="container">
-    <input
-      type="text"
-      class="todo-input"
-      placeholder="Un élément à ajouter?"
-      v-model="newTodo"
-      v-on:keyup.enter="addNewTodo"
-    />
-    <button class="addButton btn" v-on:click="addNewTodo">Ajouter</button>
-
-    <!-- <p> {{dataToDelete}} </p> -->
+    <form class="form">
+      <input
+        type="text"
+        class="todo-input"
+        placeholder="Un élément à ajouter?"
+        v-model="newTodo"
+        v-on:keyup.enter="addNewTodo"
+      />
+      <button class="addButton btn" v-on:click="addNewTodo">Ajouter</button>
+    </form>
 
     <div class="list-group">
       <p v-if="itemList.length <= 0" class="msg">Votre liste est vide</p>
@@ -67,7 +67,7 @@ export default {
     },
     addNewTodo() {
       if (this.newTodo.length > 0) {
-        this.itemList.push(this.newTodo);
+        this.itemList.unshift(this.newTodo);
       }
       this.newTodo = "";
       localStorage.setItem("todoStorage", JSON.stringify(this.itemList));
@@ -85,26 +85,32 @@ export default {
 <style lang="scss" scoped>
 .container {
   width: 90vw;
-  max-width: 500px;
+  max-width: 600px;
   margin: auto;
   padding: 20px 0;
 }
 
-.addButton {
-  margin-top: 16px;
+.form {
+  display: flex;
 }
 
 .msg {
-  font-size: 20px;
+  font-size: 16px;
+}
+
+.container,
+.msg {
+  text-align: center;
 }
 
 .btn {
   font-family: inherit;
-  padding: 4px 24px;
-  border-radius: 50px;
-  border: solid #e74c3c 1px;
+  padding: 0 24px;
+  line-height: 22px;
+  border-radius: 4px;
+  border: solid #3662f3 1px;
   color: white;
-  background-color: #e74c3c;
+  background-color: #3662f3;
   font-weight: bold;
   font-size: 14px;
   &:hover {
@@ -115,17 +121,20 @@ export default {
 
 .todo-input {
   padding: 2px 8px;
+  margin-right: 4px;
   width: 100%;
   box-sizing: border-box;
   font-size: 14px;
 }
 
 .list-group {
-  // border: solid 1px red;
   padding: 12px 0;
   ul {
-    margin: 0;
     padding: 0;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
   }
 }
 </style>

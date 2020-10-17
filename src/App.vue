@@ -19,18 +19,18 @@ body {
   padding: 0;
 }
 .header {
+  text-align: center;
   position: relative;
   top: 0;
   color: white;
   height: 150px;
   width: 100%;
+  margin-bottom: 24px;
   display: flex;
   justify-content: center;
   flex-direction: column;
   &__title {
-    letter-spacing: 8px;
-    // margin-top: 0;
-    // padding-top: 12px;
+    letter-spacing: 6px;
   }
   a {
     color: black;
@@ -59,8 +59,7 @@ body {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-size: 18px;
-  text-align: center;
+  font-size: 14px;
   color: #2c3e50;
   width: 100%;
   box-sizing: border-box;
