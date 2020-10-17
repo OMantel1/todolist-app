@@ -85,7 +85,7 @@ export default {
 <style lang="scss" scoped>
 .container {
   width: 90vw;
-  max-width: 600px;
+  max-width: 800px;
   margin: auto;
   padding: 20px 0;
 }
@@ -128,13 +128,15 @@ export default {
 }
 
 .list-group {
-  padding: 12px 0;
+  padding: 24px 0;
   ul {
     padding: 0;
-    margin: auto;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 8px;
+    @media (max-width: 425px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
   }
 }
 </style>
