@@ -159,7 +159,7 @@ class todo {
 
 .btn {
   font-family: inherit;
-  padding: 0 24px;
+  padding: 4px 24px;
   line-height: 22px;
   border-radius: 4px;
   border: solid #3662f3 1px;
@@ -199,6 +199,7 @@ class todo {
   input[type="radio"] {
     width: 22px;
     height: 22px;
+    -moz-appearance: none
   }
   input:after {
     position: relative;
@@ -215,15 +216,19 @@ class todo {
   }
   .btn-blue:after {
     background-color: #74b9ff;
+    border: solid #74b9ff 1px;
   }
   .btn-white:after {
     background-color: white;
+    border: solid #bababa 1px;
   }
   .btn-red:after {
     background-color: #ff7675;
+    border: solid #ff7675 1px;
   }
   .btn-orange:after {
     background-color: #fdcb6e;
+    border: solid #fdcb6e 1px;
   }
 }
 </style>

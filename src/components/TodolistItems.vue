@@ -27,7 +27,7 @@ li {
   list-style-type: none;
   border: solid rgb(185, 185, 213) 1px;
   text-align: left;
-  padding: 0 8px;
+  padding: 12px 8px;
   border-radius: 2px;
   display: flex;
   justify-content: space-between;
@@ -38,6 +38,7 @@ li {
 
 .far {
   color: #262626;
+  font-size: 18px;
 }
 
 .delete-icon {
@@ -58,6 +59,6 @@ li {
   border: solid #fdcb6e 1px;
 }
 .bg-white {
-  background-color: rgb(255, 255, 255);
+  background-color: #ffffff;
 }
 </style>
