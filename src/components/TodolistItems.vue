@@ -1,12 +1,9 @@
 <template>
   <li>
-    <p>
-      {{ content }}
-    </p>
+    <p>{{ content }}</p>
     <a class="delete-icon" @click="deleteSingleItem" href="#">
       <i class="far fa-window-close"></i
     ></a>
-
   </li>
 </template>
 
@@ -18,8 +15,8 @@ export default {
   },
   methods: {
     deleteSingleItem() {
-      let dataToDelete = this.content;
-      this.$emit("delete-item", dataToDelete);
+      let todoToDeleteID = this.$attrs.id;
+      this.$emit("delete-item", todoToDeleteID);
     },
   },
 };
@@ -40,11 +37,27 @@ li {
 }
 
 .far {
-  color: #e74c3c;
+  color: #262626;
 }
 
 .delete-icon {
   position: relative;
   top: 2px;
+}
+
+.bg-blue {
+  background-color: #74b9ff;
+  border: solid #74b9ff 1px;
+}
+.bg-red {
+  background-color: #ff7675;
+  border: solid #ff7675 1px;
+}
+.bg-orange {
+  background-color: #fdcb6e;
+  border: solid #fdcb6e 1px;
+}
+.bg-white {
+  background-color: rgb(255, 255, 255);
 }
 </style>

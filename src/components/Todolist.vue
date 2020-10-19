@@ -8,16 +8,55 @@
         v-model="newTodo"
         v-on:keyup.enter="addNewTodo"
       />
+
       <button class="addButton btn" v-on:click="addNewTodo">Ajouter</button>
     </form>
+
+    <div class="color-box">
+      <input
+        checked="checked"
+        type="radio"
+        name="color"
+        id="input-white"
+        value="bg-white"
+        class="btn-white"
+        v-model="colorPicked"
+      />
+      <input
+        type="radio"
+        name="color"
+        id="input-blue"
+        value="bg-blue"
+        class="btn-blue"
+        v-model="colorPicked"
+      />
+      <input
+        type="radio"
+        name="color"
+        id="input-orange"
+        value="bg-orange"
+        class="btn-orange"
+        v-model="colorPicked"
+      />
+      <input
+        type="radio"
+        name="color"
+        id="input-red"
+        value="bg-red"
+        class="btn-red"
+        v-model="colorPicked"
+      />
+    </div>
 
     <div class="list-group">
       <p v-if="itemList.length <= 0" class="msg">Votre liste est vide</p>
       <ul v-else>
         <TodolistItems
-          v-for="(item, index) in itemList"
-          :key="index"
-          :content="item"
+          v-for="todo in itemList"
+          :key="todo.id"
+          :content="todo.content"
+          :class="todo.color"
+          :id="todo.id"
           v-on:delete-item="deleteTodoClicked"
         />
       </ul>
@@ -46,18 +85,23 @@ export default {
 
   data() {
     return {
+      id: "",
       itemList: [],
       newTodo: "",
+      colorPicked: "bg-white",
     };
   },
   mounted() {
     this.check();
   },
   methods: {
-    deleteTodoClicked(elt) {
-      const indexOfElt = this.itemList.indexOf(elt);
-      this.itemList.splice(indexOfElt, 1);
-      localStorage.setItem("todoStorage", JSON.stringify(this.itemList));
+    deleteTodoClicked(idClicked) {
+      for (let i = 0; i < this.itemList.length; i++) {
+        if (this.itemList[i].id === idClicked) {
+          this.itemList.splice(i, 1);
+          localStorage.setItem("todoStorage", JSON.stringify(this.itemList));
+        }
+      }
     },
     check() {
       let storage = JSON.parse(localStorage.getItem("todoStorage"));
@@ -67,7 +111,9 @@ export default {
     },
     addNewTodo() {
       if (this.newTodo.length > 0) {
-        this.itemList.unshift(this.newTodo);
+        let id = Date.now();
+        let newTodo = new todo(id, this.newTodo, this.colorPicked);
+        this.itemList.unshift(newTodo);
       }
       this.newTodo = "";
       localStorage.setItem("todoStorage", JSON.stringify(this.itemList));
@@ -78,6 +124,14 @@ export default {
     },
   },
 };
+
+class todo {
+  constructor(id, todo, color) {
+    this.id = id;
+    this.content = todo;
+    this.color = color;
+  }
+}
 </script>
 
 
@@ -137,6 +191,39 @@ export default {
     @media (max-width: 425px) {
       grid-template-columns: repeat(2, 1fr);
     }
+  }
+}
+
+.color-box {
+  padding-top: 18px;
+  input[type="radio"] {
+    width: 22px;
+    height: 22px;
+  }
+  input:after {
+    position: relative;
+    content: "";
+    width: 20px;
+    height: 20px;
+    background-color: white;
+    border: solid white 1px;
+    border-radius: 50%;
+    display: inline-block;
+  }
+  input:checked:after {
+    border: solid black 1px;
+  }
+  .btn-blue:after {
+    background-color: #74b9ff;
+  }
+  .btn-white:after {
+    background-color: white;
+  }
+  .btn-red:after {
+    background-color: #ff7675;
+  }
+  .btn-orange:after {
+    background-color: #fdcb6e;
   }
 }
 </style>
