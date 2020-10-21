@@ -19,7 +19,7 @@
         name="color"
         id="input-white"
         value="bg-white"
-        class="btn-white"
+        class="btn-white color"
         v-model="colorPicked"
       />
       <input
@@ -27,7 +27,7 @@
         name="color"
         id="input-blue"
         value="bg-blue"
-        class="btn-blue"
+        class="btn-blue color"
         v-model="colorPicked"
       />
       <input
@@ -35,7 +35,7 @@
         name="color"
         id="input-orange"
         value="bg-orange"
-        class="btn-orange"
+        class="btn-orange color"
         v-model="colorPicked"
       />
       <input
@@ -43,7 +43,7 @@
         name="color"
         id="input-red"
         value="bg-red"
-        class="btn-red"
+        class="btn-red color"
         v-model="colorPicked"
       />
     </div>
@@ -240,6 +240,12 @@ class todo {
   }
 }
 
+.color {
+  &:hover {
+    animation: ball 300ms;
+  }
+}
+
 .fade {
   animation: fade 0.5s;
 }
@@ -263,6 +269,24 @@ class todo {
   to {
     opacity: 0;
     transform: scale(0.5);
+  }
+}
+
+@keyframes ball {
+  from {
+    transform: translateX(0px);
+  }
+  25% {
+    transform: translateX(-2px);
+  }
+  50% {
+    transform: translateX(0px);
+  }
+  75% {
+    transform: translateX(2px);
+  }
+  to {
+    transform: translateX(0);
   }
 }
 </style>
