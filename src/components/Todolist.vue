@@ -261,17 +261,6 @@ class todo {
   }
 }
 
-@keyframes fade {
-  from {
-    opacity: 1;
-    transform: scale(1);
-  }
-  to {
-    opacity: 0;
-    transform: scale(0.5);
-  }
-}
-
 @keyframes ball {
   from {
     transform: translateX(0px);
