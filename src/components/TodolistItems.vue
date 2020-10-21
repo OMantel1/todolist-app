@@ -1,5 +1,5 @@
 <template>
-  <li>
+  <li class="reveal">
     <p>{{ content }}</p>
     <a class="delete-icon" @click="deleteSingleItem" href="#">
       <i class="far fa-window-close"></i
@@ -60,5 +60,20 @@ li {
 }
 .bg-white {
   background-color: #ffffff;
+}
+
+.reveal {
+  animation: animReveal 0.7s;
+}
+
+@keyframes animReveal {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 </style>

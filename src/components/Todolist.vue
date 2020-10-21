@@ -48,7 +48,7 @@
       />
     </div>
 
-    <div class="list-group">
+    <div class="list-group" id="list">
       <p v-if="itemList.length <= 0" class="msg">Votre liste est vide</p>
       <ul v-else>
         <TodolistItems
@@ -119,6 +119,14 @@ export default {
       localStorage.setItem("todoStorage", JSON.stringify(this.itemList));
     },
     deleteAllTheList() {
+      let group = document.getElementById("list");
+      group.classList.add("fade");
+      setTimeout(() => {
+        this.deleteAllStorage();
+        group.classList.remove("fade");
+      }, 400);
+    },
+    deleteAllStorage() {
       localStorage.removeItem("todoStorage");
       this.itemList = [];
     },
@@ -199,7 +207,7 @@ class todo {
   input[type="radio"] {
     width: 22px;
     height: 22px;
-    -moz-appearance: none
+    -moz-appearance: none;
   }
   input:after {
     position: relative;
@@ -229,6 +237,32 @@ class todo {
   .btn-orange:after {
     background-color: #fdcb6e;
     border: solid #fdcb6e 1px;
+  }
+}
+
+.fade {
+  animation: fade 0.5s;
+}
+
+@keyframes fade {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.5);
   }
 }
 </style>
